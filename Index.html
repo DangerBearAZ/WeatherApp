@@ -11,6 +11,45 @@
     <link rel="stylesheet" href="assets/style.css" />
     <title>Weather</title>
   </head>
+  <header>
+    <div class="p-3 mb-2 text-center bg-dark text-white fs-1">
+      Weather Dashboard
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+        <!-- left side col serach area start -->
+      <div class="col-sm-3">
+        <h1>Search for a City</h1>
+        <div class="row">
+          <textarea> ***** </textarea>
+          <button type="button" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+   <!-- left side col serach area end -->
+   <!--- right side col display area  start -->
+   <div class="col-sm-9">
+       <!-- card for weather data start -->
+       <div class="card">
+        <div class="card-header">
+          City with date
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Temperature: </li>
+          <li class="list-group-item">Humidity</li>
+          <li class="list-group-item">Wind Speed:</li>
+          <li class="list-group-item">UV Index *these needs to change colors</li>
+        </ul>
+        <div> 5-day Forecast</div>
+      </div>
+       <!-- card for weather data start -->
+
+
+   </div>
+   <!--- right side col display area end  -->
+    </div>
+  </div>
+
   <body>
     <script src="assets/weather.js"></script>
   </body>
