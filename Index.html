@@ -6,53 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/style.css" />
     <title>Weather</title>
   </head>
-  <header>
-    <div class="p-3 mb-2 text-center bg-dark text-white fs-1">
-      Weather Dashboard
-    </div>
-  </header>
-  <div class="container">
-    <div class="row">
-        <!-- left side col serach area start -->
-      <div class="col-sm-3">
-        <div class="card">
-        <from class="card-body">
-            <label class="form-label" for="location">Search for a City:</label>
-            <input name="location" id="location" type="text" autofocus="true" class="form-input" />
-            <button type="submit" class="btn">search</button>
-        </from>
-        </div>
-      </div>
-   <!-- left side col serach area end -->
-   <!--- right side col display area  start -->
-   <div class="col-sm-9">
-       <!-- card for weather data start -->
-       <div class="card">
-        <div class="card-header">
-          City with date
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Temperature: </li>
-          <li class="list-group-item">Humidity</li>
-          <li class="list-group-item">Wind Speed:</li>
-          <li class="list-group-item">UV Index *these needs to change colors</li>
-        </ul>
-        <div> 5-day Forecast</div>
-      </div>
-       <!-- card for weather data start -->
-
-
-   </div>
-   <!--- right side col display area end  -->
-    </div>
-  </div>
-
   <body>
-     <script src="./assets/weather.js"></script>
+    <header>
+      <div class="p-3 mb-2 text-center bg-dark text-white fs-1">
+        Weather Dashboard
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <!-- left side col serach area start -->
+        <div class="col-sm-3">
+          <div class="card">
+            <form id="search" class="card-body">
+              <label class="form-label" for="location">Search for a City:</label>
+              <input id="location" name="location" type="text" autofocus="true" class="form-input"/>
+              <button  type="submit" class="btn">search</button>
+            </form>
+          </div>
+        </div>
+        <!-- left side col serach area end -->
+        <!--- right side col display area  start -->
+        <div class="col-sm-9">
+          <!-- card for weather data start -->
+          <div class="card">
+            <div class="card-header">City with date</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Temperature:</li>
+              <li class="list-group-item">Humidity</li>
+              <li class="list-group-item">Wind Speed:</li>
+              <li class="list-group-item">
+                UV Index *these needs to change colors
+              </li>
+            </ul>
+            <div>5-day Forecast</div>
+          </div>
+          <!-- card for weather data start -->
+        </div>
+        <!--- right side col display area end  -->
+      </div>
+    </div>
+
+    <script src="./assets/weather.js"></script>
   </body>
 </html>
