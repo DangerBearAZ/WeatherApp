@@ -1,5 +1,6 @@
 var locationInputEl = document.querySelector("#location")
-var weatherOut = document.getElementById("#weatherOut")
+var weather = document.getElementById("#titleEl")
+var tempEl = document.getElementById("tempEl")
 
 //location entered a 
 var formSubmitLocation = function (event) {
@@ -22,15 +23,15 @@ var formSubmitLocation = function (event) {
 
 //get weather using API with paramiters of location 
 var getWeather = function (location) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
+    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=6864ab667437eddcb5ebc40aa45d6f83";
     fetch(apiUrl)
         .then(function (response) {
             // if request was successful
             if (response.ok) {
-                console.log(response);
-                response.json().then(function (data) {
-                    console.log(data);
-                    displayWeather(data, location);
+                // console.log(response);
+                response.json().then(function (weather) {
+                   // console.log(weather);
+                    displayWeather(weather, location);
                 });
             } else {
                 alert("Error " + response.statusText);
@@ -42,22 +43,42 @@ var getWeather = function (location) {
 };
 
 //display weather
-var displayWeather = function (weather, searchLocation) {
-    //check if API returned anything
+var displayWeather = function (weather) {
+    //if blank
     if (weather.lenth === 0) {
         locationInputEl.textContent = "location not found";
         return;
     }
-// this is doing somthing i need words I don't have works I need coffee
-    locationInputEl.textContent = searchLocation; {
-        var searchLocation = function () {
-            titleEl.textContent = searchLocation;
-            console.log(searchLocation);
-        };
-    }
+    // display weather
+    titleEl.innerText = (weather.name);
+    tempEl.innerText = (weather.main.temp);
+    humidityEl.innerText = (weather.main.humidity);
+    windSpeedEl.innerText = (weather.wind.speed);
 
+    var uvIndex = function (){
+        var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?" + weather.coord.lon weather.cord.lat + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
+        fetch(apiUrl)
+        .then (function (response){
+            if (response.ok) {
+                console.log(response)
+            }
+        })
+    };
 
-}
+};
 
+// uvIndex 
+// var uvIndex = function () {
+//     var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?" + location + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
+//     fetch(apiUrl)
+//     .then (function (response) {
+//         if (response.ok){
+//             console.log(response);
+//             response.json().then(function (uvIndex){
+//                 console.log(uvIndex);
+//             })
+//         }
+//     });
+// };
 // add event listeners to form and button container
 document.getElementById("search").addEventListener("submit", formSubmitLocation);
