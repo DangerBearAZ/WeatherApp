@@ -90,7 +90,9 @@ var displayWeather = function (weather) {
     }
     
 var displayUv = function(uv) {
-    uvEl.innerText = (uv.current.uvi);
+    uvEl.innerText = (uv.current.uvi)
+    
+
 }
 
 // var fiveDay = function (weather)  {
