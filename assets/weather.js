@@ -30,7 +30,7 @@ var getWeather = function (location) {
             if (response.ok) {
                 // console.log(response);
                 response.json().then(function (weather) {
-                   // console.log(weather);
+                    // console.log(weather);
                     displayWeather(weather, location);
                 });
             } else {
@@ -45,7 +45,7 @@ var getWeather = function (location) {
 //display weather
 var displayWeather = function (weather) {
     //if blank
-    if (weather.lenth === 0) {
+    if (weather.length === 0) {
         locationInputEl.textContent = "location not found";
         return;
     }
@@ -55,30 +55,24 @@ var displayWeather = function (weather) {
     humidityEl.innerText = (weather.main.humidity);
     windSpeedEl.innerText = (weather.wind.speed);
 
-    var uvIndex = function (){
-        var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?" + weather.coord.lon weather.cord.lat + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
+    var uvIndex = function () {
+        var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?" + "lon=" + weather.coord.lon + "&lat=" + weather.coord.lat + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
         fetch(apiUrl)
-        .then (function (response){
-            if (response.ok) {
-                console.log(response)
+        .then(function(response) {
+            if(response.ok){
+                response.json().then(function (uvIndex) {
+                    console.log(uvIndex)
+                })
             }
         })
-    };
-
+    
+        
+            
+    }
+      
 };
 
-// uvIndex 
-// var uvIndex = function () {
-//     var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?" + location + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
-//     fetch(apiUrl)
-//     .then (function (response) {
-//         if (response.ok){
-//             console.log(response);
-//             response.json().then(function (uvIndex){
-//                 console.log(uvIndex);
-//             })
-//         }
-//     });
-// };
-// add event listeners to form and button container
+
+
+
 document.getElementById("search").addEventListener("submit", formSubmitLocation);
