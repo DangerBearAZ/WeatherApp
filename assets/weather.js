@@ -1,6 +1,8 @@
 var locationInputEl = document.querySelector("#location")
 var weather = document.getElementById("#titleEl")
 var tempEl = document.getElementById("tempEl")
+var uvEl = document.getElementById("uvIndexEl")
+
 
 //location entered a 
 var formSubmitLocation = function (event) {
@@ -30,8 +32,10 @@ var getWeather = function (location) {
             if (response.ok) {
                 // console.log(response);
                 response.json().then(function (weather) {
-                    // console.log(weather);
+                    console.log(weather);
                     displayWeather(weather, location);
+                    uvIndex(weather);
+                    fiveDay(weather);
                 });
             } else {
                 alert("Error " + response.statusText);
@@ -42,6 +46,30 @@ var getWeather = function (location) {
         });
 };
 
+// used prior api to determin lat an lon for this new api url 
+var uvIndex = function (weather) {
+    const lon = (weather.coord.lon);
+    const lat = (weather.coord.lat);
+    // console.log(lon)
+    // console.log(lat)
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
+    fetch(apiUrl)
+    .then(function (response){
+        if (response.ok){
+            response.json().then(function (uv) {
+                // console.log(uv)
+                displayUv(uv)
+            }); 
+        } else {
+            alert("Error " + response.statusText);
+        }
+    })
+    .catch(function (error) {
+        alert("Unable to connect to WeatherAPI");
+    });
+};
+
+
 //display weather
 var displayWeather = function (weather) {
     //if blank
@@ -49,30 +77,24 @@ var displayWeather = function (weather) {
         locationInputEl.textContent = "location not found";
         return;
     }
+
+
+
     // display weather
     titleEl.innerText = (weather.name);
     tempEl.innerText = (weather.main.temp);
     humidityEl.innerText = (weather.main.humidity);
     windSpeedEl.innerText = (weather.wind.speed);
 
-    var uvIndex = function () {
-        var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?" + "lon=" + weather.coord.lon + "&lat=" + weather.coord.lat + "&appid=6864ab667437eddcb5ebc40aa45d6f83";
-        fetch(apiUrl)
-        .then(function(response) {
-            if(response.ok){
-                response.json().then(function (uvIndex) {
-                    console.log(uvIndex)
-                })
-            }
-        })
-    
-        
-            
-    }
       
-};
+    }
+    
+var displayUv = function(uv) {
+    uvEl.innerText = (uv.current.uvi);
+}
 
-
-
+// var fiveDay = function (weather)  {
+// var lockationId = (weather.id)
+// }
 
 document.getElementById("search").addEventListener("submit", formSubmitLocation);
