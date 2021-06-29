@@ -25,7 +25,7 @@ var formSubmitLocation = function (event) {
 
 //get weather using API with paramiters of location 
 var getWeather = function (location) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=6864ab667437eddcb5ebc40aa45d6f83";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=6864ab667437eddcb5ebc40aa45d6f83";
     fetch(apiUrl)
         .then(function (response) {
             // if request was successful
